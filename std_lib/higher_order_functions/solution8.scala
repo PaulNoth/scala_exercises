@@ -11,7 +11,7 @@ makeUpper(List("abc", "xyz", "123")) should be(
 )
 
 makeWhatEverYouLike(List("ABC", "XYZ", "123"), {
-  x ⇒ x.toLowerCase
+  x => x.toLowerCase
 }) should be(
   List("abc", "xyz", "123")
 )
