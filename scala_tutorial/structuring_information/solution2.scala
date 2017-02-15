@@ -1,19 +1,12 @@
-// EXERCISE
-// Consider the following algebraic data type that models note durations. Complete the implementation of the
-// function fractionOfWhole, which takes as parameter a duration and returns the corresponding fraction of the Whole duration.
+// EQUALS
 
-sealed trait Duration
-case object Whole extends Duration
-case object Half extends Duration
-case object Quarter extends Duration
+// It is worth noting that, since the purpose of case classes is to aggregate values,
+// comparing case class instances compare their values:
 
-def fractionOfWhole(duration: Duration): Double =
-  duration match {
-    case Whole => 1.0
-    case Half => 0.5
+case class Note(name: String, duration: String, octave: Int)
+val c3 = Note("C", "Quarter", 3)
+val otherC3 = Note("C", "Quarter", 3)
+val f3 = Note("F", "Quarter", 3)
+(c3 == otherC3) shouldBe true
 
-    case Quarter => 0.25
-  }
-
-fractionOfWhole(Half) shouldBe 0.5
-fractionOfWhole(Quarter) shouldBe 0.25
+(c3 == f3) shouldBe false
