@@ -1,6 +1,15 @@
-//Transform an optional value with map:
+val cond: (Int, Int) => Boolean =
+  (x: Int, y: Int) => x < y
 
-Some(1).map(x => x + 1) shouldBe Some(2)
-None.map((x: Int) => x + 1) shouldBe None
+def insert(x: Int, xs: List[Int]): List[Int] =
+  xs match {
+    case List() => x ::
+      Nil
 
-Some(1).map(x => x + 1) shouldBe Some(2)
+    case y :: ys =>
+      if (cond(x, y)) x :: y :: ys
+      else y :: insert(x, ys)
+  }
+insert(2, 1 :: 3 :: Nil) shouldBe (1 :: 2 :: 3 :: Nil)
+insert(1, 2 :: 3 :: Nil) shouldBe (1 :: 2 :: 3 :: Nil)
+insert(3, 1 :: 2 :: Nil) shouldBe (1 :: 2 :: 3 :: Nil)
